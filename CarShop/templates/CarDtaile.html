@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load crispy_forms_tags %}
+<div class="container d-flex gap-2 justify-content-between align-items-center " style="height: 100vh;">
+    <div class="row row-cols-6">
+        <img src="{{data.image.url}}" style="
+        width: 40rem; border-radius: 2rem;
+    ">
+    </div>
+    <div class="w-50">
+        <h1>{{data.name}}</h1>
+        <p class="fs-3">Price: $ {{data.price}}</p>
+        <p class="fs-4">Quantity: {{data.quantity}}</p>
+        <p class="fs-3">Brand: {{data.brand}}</p>
+        <p>{{data.discription}}</p>
+        <p class="badge text-bg-secondary fs-5">Author: {{data.author}}</p>
+        <div>
+            <form action="{% url 'carUpdate' data.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-primary " type="submit">Bye Now</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="container mx-auto py-2" style="min-height: 100vh;">
+    <h1 class="text-center">Comment Now</h1>
+    {% for cmt in allcomments %}
+    <div class="alert alert-primary" role="alert">
+
+        <p class="fs-3">{{cmt.name}}</p>
+        <p>{{cmt.comment}}</p>
+    </div>
+    {% endfor %}
+    <form method="post" class="w-75 container mx-auto">
+        {% csrf_token %}
+        {{commentForm | crispy}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html"%}
+{% block body %}
+
+
+<div class="p-2" style="min-height: 100vh;">
+    <div class="container d-flex flex-wrap gap-2">
+        {% for i in order%}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{i.car.image.url}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Name: {{i.user}}</h5>
+                <h5 class="card-title">Price: ${{i.car.price}}</h5>
+                <h5 class="card-title">Brand: {{i.car.brand}}</h5>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
